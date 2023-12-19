@@ -68,6 +68,10 @@ main {
     border: none;
 }
 
+.nav_icons {
+    width: 10rem;
+}
+
 .carousel-height {
     max-height: calc(100dvh - 2.5rem);
 }
