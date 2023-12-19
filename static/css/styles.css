@@ -10,6 +10,24 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    user-select: none;
+}
+
+ul li {
+    list-style-type: none;
+}
+
 main {
     flex: 1;
 }
@@ -57,7 +75,6 @@ main {
 .carousel-img {
     object-fit: cover;
     object-position: center;
-    user-select: none;
 }
 
 .item-card {
@@ -72,7 +89,6 @@ main {
     width: unset !important;
     display: block;
     margin: 0 auto;
-    user-select: none;
 }
 
 .about_img {
@@ -87,6 +103,10 @@ main {
 
 .newsletters {
     background-color: #62337F;
+}
+
+.footer {
+    box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.25);
 }
 
 @media (min-width: 768px) {

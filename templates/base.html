@@ -101,7 +101,76 @@
 
     {% endblock %}
 </main>
-<footer></footer>
+<footer class="bg-white footer">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <a href="#">
+                    <img class="header_logo" src="{% static 'icons/m_tune.svg' %}" alt="M-TUNE logo">
+                </a>
+                <ul class="mt-4">
+                    <li>
+                        <a class="link" href="#">FACEBOOK</a>
+                    </li>
+                    <li>
+                        <a class="link" href="#">INSTAGRAM</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3 order-md-1">
+                <p class="font-days mb-3 mt-md-3">Payment Methods</p>
+                <ul class="d-flex gap-2">
+                    <li>
+                        <img src="{% static 'icons/payment_visa.png' %}" alt="Visa payments" width="30"
+                             draggable="false">
+                    </li>
+                    <li>
+                        <img src="{% static 'icons/payment_mastercard.png' %}" alt="Mastercard payments" width="30"
+                             draggable="false">
+                    </li>
+                    <li>
+                        <img src="{% static 'icons/payment_apple.png' %}" alt="ApplePay payments" width="30"
+                             draggable="false">
+                    </li>
+                    <li>
+                        <img src="{% static 'icons/payment_paypal.png' %}" alt="PayPal payments" width="30"
+                             draggable="false">
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <p class="my-3 font-days">COMPANY</p>
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Products</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <p class="my-3 font-days">ASSISTANCE</p>
+                <ul>
+                    <li>
+                        <a href="#">Shipping</a>
+                    </li>
+                    <li>
+                        <a href="#">Returns</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p class="text-center">Copyright 2023 M-TUNE. All right reserved</p>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
