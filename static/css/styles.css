@@ -85,6 +85,10 @@ main {
     object-fit: cover;
 }
 
+.newsletters {
+    background-color: #62337F;
+}
+
 @media (min-width: 768px) {
     .title {
         font-size: 3rem;
@@ -117,5 +121,10 @@ main {
 
     .about_img {
         height: 20rem;
+    }
+
+    .input-group {
+        height: 2rem;
+        max-width: 30rem;
     }
 }
