@@ -24,11 +24,27 @@
                 <img class="header_logo" src="{% static 'icons/m_tune.svg' %}" alt="M-TUNE logo">
             </a>
             <!-- Toggler/collapsible Button for mobile -->
-            <button class="d-md-none nav_menu" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <img src="{% static 'icons/icon_menu.svg' %}" alt="Menu icon">
-            </button>
+            <div class="d-flex align-items-center">
+                <div class="d-flex d-md-none">
+                    <a href="#" class="nav-icon-link me-2">
+                        <img src="{% static 'icons/icon_search.svg' %}" alt="Search icon">
+                    </a>
+                    <a href="#" class="nav-icon-link me-2">
+                        <img src="{% static 'icons/icon_heart.svg' %}" alt="Heart icon">
+                    </a>
+                    <a href="#" class="nav-icon-link me-2">
+                        <img src="{% static 'icons/icon_shopping_bag.svg' %}" alt="Shopping bag icon">
+                    </a>
+                    <a href="#" class="nav-icon-link">
+                        <img src="{% static 'icons/icon_user.svg' %}" alt="Profile icon">
+                    </a>
+                </div>
+                <button class="d-md-none nav_menu" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <img src="{% static 'icons/icon_menu.svg' %}" alt="Menu icon">
+                </button>
+            </div>
             <!-- Offcanvas Menu -->
             <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="offcanvasNavbar"
                  aria-labelledby="offcanvasNavbarLabel">
@@ -48,20 +64,7 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
-                    <div class="d-flex mt-3">
-                        <a href="#" class="nav-icon-link me-2">
-                            <img src="{% static 'icons/icon_search.svg' %}" alt="Search icon">
-                        </a>
-                        <a href="#" class="nav-icon-link me-2">
-                            <img src="{% static 'icons/icon_heart.svg' %}" alt="Heart icon">
-                        </a>
-                        <a href="#" class="nav-icon-link me-2">
-                            <img src="{% static 'icons/icon_shopping_bag.svg' %}" alt="Shopping bag icon">
-                        </a>
-                        <a href="#" class="nav-icon-link">
-                            <img src="{% static 'icons/icon_user.svg' %}" alt="Profile icon">
-                        </a>
-                    </div>
+
                 </div>
             </div>
             <!-- Navbar links for large screens -->
