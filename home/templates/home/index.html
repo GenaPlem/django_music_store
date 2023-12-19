@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <div id="heroCarousel" class="carousel slide carousel-height" data-bs-ride="carousel">
+    <section id="heroCarousel" class="carousel slide carousel-height" data-bs-ride="carousel">
         <!-- Indicators/dots -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -15,20 +15,23 @@
         <!-- The slideshow/carousel -->
         <div class="carousel-inner carousel-height">
             <div class="carousel-item active">
-                <img src="{% static 'images/slider_guitar_img.webp' %}" class="d-block w-100 carousel-img"
+                <img src="{% static 'images/slider_guitar_img.webp' %}" draggable="false"
+                     class="d-block w-100 carousel-img"
                      alt="Guitar image">
                 <div class="carousel-caption d-none d-md-block">
                     <h1 class="title d-none">Musical instrument store</h1>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/slider_piano_img.webp' %}" class="d-block w-100 carousel-img"
+                <img src="{% static 'images/slider_piano_img.webp' %}" draggable="false"
+                     class="d-block w-100 carousel-img"
                      alt="Paino image">
                 <div class="carousel-caption d-none d-sm-block">
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{% static 'images/slider_drums_img.webp' %}" class="d-block w-100 carousel-img"
+                <img src="{% static 'images/slider_drums_img.webp' %}" draggable="false"
+                     class="d-block w-100 carousel-img"
                      alt="Drums image">
                 <div class="carousel-caption d-none d-sm-block">
                 </div>
@@ -44,68 +47,106 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>
-    <div class="container mb-5">
+    </section>
+    <section class="container mb-5 top-products">
         <div class="row">
-            <div class="col px-0">
+            <div class="col">
                 <h2 class="mt-5 mb-4 title">Top Products</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-6 col-md-4">
                 <div class="card item-card mb-4 rounded-4">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" alt="guitar">
+                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" draggable="false"
+                             alt="guitar">
                         <p class="text-center">Electro-guitar</p>
                         <span class="align-self-end">€ 499</span>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-md-4">
                 <div class="card item-card mb-4 rounded-4">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" alt="guitar">
+                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" draggable="false"
+                             alt="guitar">
                         <p class="text-center">Electro-guitar</p>
                         <span class="align-self-end">€ 499</span>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-md-4">
                 <div class="card item-card mb-4 rounded-4">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" alt="guitar">
+                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" draggable="false"
+                             alt="guitar">
                         <p class="text-center">Electro-guitar</p>
                         <span class="align-self-end">€ 499</span>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-md-4">
                 <div class="card item-card mb-4 rounded-4">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" alt="guitar">
+                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" draggable="false"
+                             alt="guitar">
                         <p class="text-center">Electro-guitar</p>
                         <span class="align-self-end">€ 499</span>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-md-4">
                 <div class="card item-card mb-4 rounded-4">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" alt="guitar">
+                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" draggable="false"
+                             alt="guitar">
                         <p class="text-center">Electro-guitar</p>
                         <span class="align-self-end">€ 499</span>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-md-4">
                 <div class="card item-card mb-4 rounded-4">
                     <div class="card-body d-flex flex-column">
-                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" alt="guitar">
+                        <img class="card-img mb-2" src="{% static 'images/guitar.jpeg' %}" draggable="false"
+                             alt="guitar">
                         <p class="text-center">Electro-guitar</p>
                         <span class="align-self-end">€ 499</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="about mb-5">
+        <div class="row container">
+            <div class="col px-0">
+                <h2 class="mt-5 mb-4 title">About us</h2>
+            </div>
+        </div>
+        <div class="d-flex flex-column container flex-md-row justify-content-center align-items-md-center gap-md-5">
+            <div class="about_img w-md-100 col-md-6">
+                <img src="{% static 'images/our_store.webp' %}" alt="Our store">
+            </div>
+            <p class="about-info mb-5 mt-3 col-md-5">At M-Tune, we have been harmonizing the chords of the music retail
+                industry for
+                years, resonating with a symphony of quality, variety, and personalized service. Born out of a
+                passion for music and a desire to bring it closer to everyone, our store has become a sanctuary for
+                music enthusiasts, budding artists, and professional musicians alike.</p>
+        </div>
+        <div class="ticker bg-black my-md-5">
+            <p class="text-white text-center py-2 font-days mb-0">Free Shipping on Orders Over €100 – Make Your Musical
+                Dreams a Reality with M-Tune!</p>
+        </div>
+        <div class="d-flex flex-column container flex-md-row justify-content-center align-items-md-center gap-md-5">
+            <p class="about-info mt-5 mb-3 col-md-5">At M-Tune, we have been harmonizing the chords of the music retail
+                industry for
+                years, resonating with a symphony of quality, variety, and personalized service. Born out of a
+                passion for music and a desire to bring it closer to everyone, our store has become a sanctuary for
+                music enthusiasts, budding artists, and professional musicians alike.</p>
+            <div class="about_img w-md-100 col-md-6">
+                <img src="{% static 'images/community.webp' %}" alt="Our community">
+            </div>
+        </div>
+    </section>
+
 {% endblock %}
