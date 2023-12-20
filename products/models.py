@@ -21,7 +21,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to='product_images/')
     slug = AutoSlugField(populate_from='name', unique_with=['category', 'id'], always_update=True)
     brand = models.CharField(max_length=100, blank=True)
     material = models.CharField(max_length=100, blank=True)
