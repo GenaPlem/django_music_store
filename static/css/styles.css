@@ -4,6 +4,7 @@ html {
 }
 
 body {
+    height: 100%;
     background-color: #F4F4F4;
     display: flex;
     flex-direction: column;
@@ -29,7 +30,7 @@ ul li {
 }
 
 main {
-    flex: 1;
+    flex: 1 0 auto;
 }
 
 /* Container to wrap content */
@@ -48,6 +49,8 @@ main {
 .title {
     font-family: 'Days One', sans-serif;
     font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .font-days {
