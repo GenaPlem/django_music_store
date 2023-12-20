@@ -1,8 +1,8 @@
 from django.shortcuts import render
-
-from django.shortcuts import render
+from products.models import Product
 
 
 def home(request):
     """ A view to return the index page """
-    return render(request, 'home/index.html')
+    top_products = Product.objects.filter(is_top_product=True)
+    return render(request, 'home.html', {'top_products': top_products})
