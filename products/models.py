@@ -1,0 +1,53 @@
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.translation import gettext_lazy as _
+from django.db import models
+
+
+class Category(models.Model):
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
+    quantity_in_stock = models.IntegerField(default=0, verbose_name="Quantity in Stock")
+    is_top_product = models.BooleanField(default=False, verbose_name="Top Product")
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    discount_percentage = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ],
+        verbose_name=_("Discount Percentage"),
+        help_text=_("Enter a number between 0 and 100.")
+    )
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def discounted_price(self):
+        """
+        Calculates the discounted price if a discount_percentage is set,
+        otherwise, returns the original price.
+        """
+        if self.discount_percentage is not None and self.discount_percentage > 0:
+            discount_amount = (Decimal(self.discount_percentage) / Decimal('100')) * self.price
+            return (self.price - discount_amount).quantize(Decimal('0.01'))
+        return self.price
