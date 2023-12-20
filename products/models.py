@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
+from autoslug import AutoSlugField
 from django.db import models
 
 
@@ -9,19 +10,19 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True)
+    slug = AutoSlugField(populate_from='name', unique_with=['id'], always_update=True)
 
     def __str__(self):
         return self.name
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='products', blank=True, null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=255)
     description = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    slug = models.SlugField(max_length=255, unique=True)
+    slug = AutoSlugField(populate_from='name', unique_with=['category', 'id'], always_update=True)
     brand = models.CharField(max_length=100, blank=True)
     material = models.CharField(max_length=100, blank=True)
     size_dimensions = models.CharField(max_length=100, blank=True)
