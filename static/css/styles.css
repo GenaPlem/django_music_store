@@ -148,6 +148,12 @@ main {
     padding-bottom: 1rem;
 }
 
+.original-price {
+    font-size: 0.7rem;
+    text-decoration: line-through;
+    color: #999;
+}
+
 .about_img {
     height: 13rem;
 }
