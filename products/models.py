@@ -29,7 +29,7 @@ class Product(models.Model):
     instrument_type = models.CharField(max_length=100, blank=True, null=True)
     quantity_in_stock = models.IntegerField(default=0, verbose_name="Quantity in Stock")
     is_top_product = models.BooleanField(default=False, verbose_name="Top Product")
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
     discount_percentage = models.DecimalField(
         max_digits=5,
         decimal_places=2,
