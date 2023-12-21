@@ -125,6 +125,25 @@ main {
     box-shadow: 0 1px 20px 1px rgba(0, 0, 0, 0.10);
     border: none;
     transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card.on-sale::before {
+    content: "Sale";
+    position: absolute;
+    top: 2.8rem;
+    left: -1.3rem;
+    transform: rotate(-45deg);
+    transform-origin: left top;
+    background: #f00;
+    color: #fff;
+    text-align: center;
+    width: 6rem;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 .item-card:hover {
