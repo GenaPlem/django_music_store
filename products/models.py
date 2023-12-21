@@ -8,6 +8,7 @@ from django.db import models
 class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
+        ordering = ('name',)
 
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='name', unique_with=['id'], always_update=True)
