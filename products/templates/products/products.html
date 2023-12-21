@@ -3,7 +3,7 @@
 {% block content %}
     <section class="container">
         <h1 class="title">Products</h1>
-        <ul class="d-flex gap-4 mb-4 flex-wrap">
+        <ul class="d-flex gap-2 gap-md-4 mb-4 flex-wrap">
             <li>
                 <a href="{% url 'products' %}">All</a>
             </li>
@@ -24,9 +24,10 @@
                             <p class="card-title text-center mt-auto">{{ product.name }}</p>
                             {% if product.discount_percentage > 0 %}
                                 <span class="align-self-end original-price">€ {{ product.price }}</span>
-                                <a class="align-self-end stretched-link" href="#">€ {{ product.discounted_price }}</a>
+                                <a class="align-self-end stretched-link" href="{% url 'product_detail' product.slug %}"><b>€ {{ product.discounted_price }}</b></a>
                             {% else %}
-                                <a class="align-self-end stretched-link mt-3" href="#">€ {{ product.price }}</a>
+                                <a class="align-self-end stretched-link mt-3"
+                                   href="{% url 'product_detail' product.slug %}"><b>€ {{ product.price }}</b></a>
                             {% endif %}
                         </div>
                     </div>

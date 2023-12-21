@@ -12,7 +12,7 @@ def all_products(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
 
-    paginator = Paginator(products, 1)
+    paginator = Paginator(products, 6)
     page = request.GET.get('page')
 
     try:
@@ -30,3 +30,8 @@ def all_products(request, category_slug=None):
     }
 
     return render(request, 'products/products.html', context)
+
+
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    return render(request, 'products/product_detail.html', {'product': product})
