@@ -41,12 +41,14 @@
             <ul class="pagination justify-content-center my-5">
                 {% if products.has_previous %}
                     <li class="page-item">
-                        <a class="page-link text-black" href="?page=1" aria-label="First">
+                        <a class="page-link text-black" href="?page=1{% if query %}&q={{ query }}{% endif %}"
+                           aria-label="First">
                             <span aria-hidden="true">&laquo;&laquo;</span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link text-black" href="?page={{ products.previous_page_number }}"
+                        <a class="page-link text-black"
+                           href="?page={{ products.previous_page_number }}{% if query %}&q={{ query }}{% endif %}"
                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -54,19 +56,24 @@
                 {% endif %}
                 {% if products.paginator.num_pages > 1 %}
                     <li class="page-item">
-                        <a class="page-link text-black" href="?page={{ products.number }}" aria-label="Previous">
+                        <a class="page-link text-black"
+                           href="?page={{ products.number }}{% if query %}&q={{ query }}{% endif %}"
+                           aria-label="Previous">
                             <span aria-hidden="true">{{ products.number }}</span>
                         </a>
                     </li>
                 {% endif %}
                 {% if products.has_next %}
                     <li class="page-item">
-                        <a class="page-link text-black" href="?page={{ products.next_page_number }}" aria-label="Next">
+                        <a class="page-link text-black"
+                           href="?page={{ products.next_page_number }}{% if query %}&q={{ query }}{% endif %}"
+                           aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link text-black" href="?page={{ products.paginator.num_pages }}"
+                        <a class="page-link text-black"
+                           href="?page={{ products.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}"
                            aria-label="Last">
                             <span aria-hidden="true">&raquo;&raquo;</span>
                         </a>
