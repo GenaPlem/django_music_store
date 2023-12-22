@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 
@@ -11,6 +12,11 @@ def all_products(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
+
+    query = request.GET.get('q')
+    if query:
+        queries = Q(name__icontains=query) | Q(description__icontains=query)
+        products = products.filter(queries)
 
     paginator = Paginator(products, 6)
     page = request.GET.get('page')
@@ -27,6 +33,7 @@ def all_products(request, category_slug=None):
         'categories': categories,
         'products': products,
         'page': page,
+        'query': query,
     }
 
     return render(request, 'products/products.html', context)

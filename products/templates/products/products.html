@@ -3,6 +3,9 @@
 {% block content %}
     <section class="container">
         <h1 class="title">Products</h1>
+        {% if query %}
+            <p class="search-q">Searched by: {{ query }}</p>
+        {% endif %}
         <ul class="d-flex gap-2 gap-md-4 mb-4 flex-wrap">
             <li>
                 <a href="{% url 'products' %}">All</a>

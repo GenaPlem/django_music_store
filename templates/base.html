@@ -18,7 +18,7 @@
 <body>
 <header class="header bg-white fixed-top">
     <nav class="container navbar navbar-expand-md navbar-light position-relative">
-        <div class="container-fluid d-flex p-0">
+        <div class="container-fluid d-flex p-0 position-relative">
             <!-- Brand/logo -->
             <a class="navbar-brand order-0 me-0" href="{% url 'home' %}">
                 <img class="header_logo" src="{% static 'icons/m_tune.svg' %}" alt="M-TUNE logo">
@@ -96,10 +96,15 @@
                 </div>
             </div>
         </div>
-        <div class="search-bar" id="searchBar">
+        <form method="GET" action="{% url 'products' %}" class="search-bar" id="searchBar">
             <input aria-label="searchbar" type="text" placeholder="Search..." class="search-input"
-                   id="searchBar">
-        </div>
+                   id="searchBar" name="q">
+            <button class="search-bar-btn" type="submit">
+                    <span class="">
+                        <img src="{% static 'icons/icon_search.svg' %}" alt="">
+                    </span>
+            </button>
+        </form>
     </nav>
 
 </header>
