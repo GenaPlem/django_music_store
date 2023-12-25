@@ -178,7 +178,8 @@ main {
 
 .item-card:hover {
     transform: scale(1.05);
-    transition: transform 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 1px 30px 1px rgba(0, 0, 0, 0.15);
 }
 
 .card-img {
