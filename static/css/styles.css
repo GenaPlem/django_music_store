@@ -265,7 +265,7 @@ main {
     margin-bottom: 0.3rem;
 }
 
-.login-form {
+.auth-form {
     max-width: 29rem;
     margin: 0 auto;
 }
@@ -275,11 +275,11 @@ main {
     font-weight: bold;
 }
 
-#login-btn {
+#form-btn {
     border: 2px solid #62337F;
 }
 
-#login-btn:hover {
+#form-btn:hover {
     transition: all 0.3s;
     color: #fff;
     background-color: #62337F;

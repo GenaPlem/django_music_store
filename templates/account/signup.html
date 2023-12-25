@@ -12,10 +12,10 @@
         <p class="text-center">
             Already have an account? Then please <a href="{{ login_url }}" class="form-link">sign in</a>.
         </p>
-        <form method="post" action="{% url 'account_signup' %}" class="login-form mb-5 d-flex flex-column">
+        <form method="post" action="{% url 'account_signup' %}" class="auth-form mb-5 d-flex flex-column">
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit" class="btn align-self-center" id="login-btn">Sign Up</button>
+            <button type="submit" class="btn align-self-center" id="form-btn">Sign Up</button>
         </form>
         <!--{% include "socialaccount/snippets/login.html" with page_layout="entrance" %}-->
     </section>
