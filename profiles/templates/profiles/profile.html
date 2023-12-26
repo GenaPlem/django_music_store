@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="container">
+        <h1 class="title">Profile</h1>
+        <nav>
+            <ul class="d-flex gap-3 gap-md-5 justify-content-center">
+                <li>
+                    <a href="#">Account</a>
+                </li>
+                <li>
+                    <a href="#">Orders</a>
+                </li>
+                <li>
+                    <a href="#">Shipping Info</a>
+                </li>
+            </ul>
+        </nav>
+        {% block main %}
+        {% endblock %}
+    </section>
+{% endblock %}
