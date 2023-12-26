@@ -280,6 +280,15 @@ main {
     color: #fff;
 }
 
+.account-sections {
+    padding: 0.2rem;
+}
+
+.account-active {
+    padding: 0.2rem;
+    outline: 2px solid #000;
+}
+
 /* Footer */
 .form-link {
     color: #62337F;
@@ -302,6 +311,10 @@ main {
 
 .footer_logo {
     width: 4rem;
+}
+
+.copyright {
+    font-size: 0.7rem;
 }
 
 @media (min-width: 576px) {

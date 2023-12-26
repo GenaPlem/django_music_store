@@ -6,13 +6,17 @@
         <nav>
             <ul class="d-flex gap-3 gap-md-5 justify-content-center">
                 <li>
-                    <a href="{% url 'profile' %}">Account</a>
+                    <a href="{% url 'profile' %}"
+                       class="{% if request.path == '/profile/' %}account-active{% endif %} account-sections">Account</a>
                 </li>
                 <li>
-                    <a href="{% url 'orders' %}">Orders</a>
+                    <a href="{% url 'orders' %}"
+                       class="{% if request.path == '/profile/orders/' %}account-active{% endif %} account-sections">Orders</a>
                 </li>
                 <li>
-                    <a href="{% url 'shipping_info' %}">Shipping Info</a>
+                    <a href="{% url 'shipping_info' %}"
+                       class="{% if request.path == '/profile/shipping_info/' %}account-active{% endif %} account-sections">Shipping
+                        Info</a>
                 </li>
             </ul>
         </nav>
