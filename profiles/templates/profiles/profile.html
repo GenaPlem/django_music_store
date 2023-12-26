@@ -6,17 +6,18 @@
         <nav>
             <ul class="d-flex gap-3 gap-md-5 justify-content-center">
                 <li>
-                    <a href="#">Account</a>
+                    <a href="{% url 'profile' %}">Account</a>
                 </li>
                 <li>
-                    <a href="#">Orders</a>
+                    <a href="{% url 'orders' %}">Orders</a>
                 </li>
                 <li>
-                    <a href="#">Shipping Info</a>
+                    <a href="{% url 'shipping_info' %}">Shipping Info</a>
                 </li>
             </ul>
         </nav>
         {% block main %}
+            <p>Account settings</p>
         {% endblock %}
     </section>
 {% endblock %}
