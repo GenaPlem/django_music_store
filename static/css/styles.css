@@ -289,6 +289,10 @@ main {
     outline: 2px solid #000;
 }
 
+.contact-form {
+    max-width: 35rem;
+}
+
 /* Footer */
 .form-link {
     color: #62337F;
