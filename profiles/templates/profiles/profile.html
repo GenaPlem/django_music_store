@@ -16,8 +16,13 @@
                 </li>
             </ul>
         </nav>
-        {% block main %}
-            <p>Account settings</p>
-        {% endblock %}
+        <div class="mb-5 mt-4 col-11 col-md-8 mx-auto">
+            {% block main %}
+                <p><b>Username:</b> {{ request.user.username }}</p>
+                <p><b>Email:</b> {{ request.user.email }}</p>
+                <a href="{% url 'account_change_password' %}" class="btn profile-btn mb-2">Change Password</a><br>
+                <a href="{% url 'account_logout' %}" class="btn profile-btn">Logout</a>
+            {% endblock %}
+        </div>
     </section>
 {% endblock %}

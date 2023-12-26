@@ -271,6 +271,16 @@ main {
     margin: 0 auto;
 }
 
+.profile-btn {
+    border: 2px solid #62337F;
+}
+
+.profile-btn:hover {
+    background-color: #62337F;
+    color: #fff;
+}
+
+/* Footer */
 .form-link {
     color: #62337F;
     font-weight: bold;
