@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('profile/', include('profiles.urls')),
     path('contact/', include('contact.urls')),
+    path('bag/', include('bag.urls')),
 ]
 
 if settings.DEBUG:
