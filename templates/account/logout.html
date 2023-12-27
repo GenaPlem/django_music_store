@@ -12,7 +12,7 @@
         <form method="post" action="{% url 'account_logout' %}" class="auth-form mb-5 d-flex flex-column">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit" class="btn align-self-center" id="form-btn">Sign Out</button>
+            <button type="submit" class="btn purple-btn align-self-center">Sign Out</button>
         </form>
     </section>
 {% endblock content %}

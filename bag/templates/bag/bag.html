@@ -7,7 +7,7 @@
             <p>Product: {{ item.product.name }}, Quantity: {{ item.quantity }}</p>
             <p>Price: € {{ item.product.price }}</p>
             {% empty %}
-            <p>Your bag is empty now, <a href="{% url 'products' %}">continue shopping</a>.</p>
+            <p>Your bag is empty now, <a href="{% url 'products' %}" class="purple-link">continue shopping.</a></p>
         {% endfor %}
         {% if bag_items %}
             <div class="bag-totals">

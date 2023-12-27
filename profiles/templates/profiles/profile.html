@@ -23,8 +23,8 @@
             {% block main %}
                 <p><b>Username:</b> {{ request.user.username }}</p>
                 <p class="mb-5"><b>Email:</b> {{ request.user.email }}</p>
-                <a href="{% url 'account_change_password' %}" class="btn profile-btn mb-2">Change Password</a><br>
-                <a href="{% url 'account_logout' %}" class="btn profile-btn">Logout</a>
+                <a href="{% url 'account_change_password' %}" class="btn purple-btn mb-2">Change Password</a><br>
+                <a href="{% url 'account_logout' %}" class="btn purple-btn">Logout</a>
             {% endblock %}
         </div>
     </section>

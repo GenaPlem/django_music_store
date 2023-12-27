@@ -271,11 +271,12 @@ main {
     margin: 0 auto;
 }
 
-.profile-btn {
+.purple-btn {
     border: 2px solid #62337F;
 }
 
-.profile-btn:hover {
+.purple-btn:hover {
+    transition: all 0.3s;
     background-color: #62337F;
     color: #fff;
 }
@@ -294,19 +295,9 @@ main {
 }
 
 /* Footer */
-.form-link {
+.purple-link {
     color: #62337F;
     font-weight: bold;
-}
-
-#form-btn {
-    border: 2px solid #62337F;
-}
-
-#form-btn:hover {
-    transition: all 0.3s;
-    color: #fff;
-    background-color: #62337F;
 }
 
 .footer {

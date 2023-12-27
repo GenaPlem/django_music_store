@@ -7,7 +7,7 @@
         <form method="post" action="{% url 'contact' %}" class="contact-form d-flex flex-column mx-auto mb-5">
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit" class="btn align-self-center" id="form-btn">Send</button>
+            <button type="submit" class="btn purple-btn align-self-center">Send</button>
         </form>
     </section>
 {% endblock %}
