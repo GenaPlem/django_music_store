@@ -56,13 +56,16 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav align-items-start">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page"
+                               href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'products' %}">Products</a>
+                            <a class="nav-link {% if request.path == '/products/' %}active{% endif %}"
+                               href="{% url 'products' %}">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                            <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                               href="{% url 'contact' %}">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -71,13 +74,16 @@
             <div class="collapse navbar-collapse order-3 order-lg-2" id="navbarTune">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                           href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'products' %}">Products</a>
+                        <a class="nav-link {% if request.path == '/products/' %}active{% endif %}"
+                           href="{% url 'products' %}">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                           href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 <!-- Icons on the right -->
@@ -175,7 +181,7 @@
                         <a href="#">Returns</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
             </div>
