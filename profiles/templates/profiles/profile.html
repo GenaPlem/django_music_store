@@ -14,16 +14,15 @@
                        class="{% if request.path == '/profile/orders/' %}account-active{% endif %} account-sections">Orders</a>
                 </li>
                 <li>
-                    <a href="{% url 'shipping_info' %}"
-                       class="{% if request.path == '/profile/shipping_info/' %}account-active{% endif %} account-sections">Shipping
-                        Info</a>
+                    <a class="{% if request.path == '/profile/shipping_info/' %}account-active{% endif %} account-sections"
+                       href="{% url 'shipping_info' %}">Shipping Info</a>
                 </li>
             </ul>
         </nav>
-        <div class="mb-5 mt-4 col-11 col-md-8 mx-auto">
+        <div class="my-5 col-11 col-md-8 mx-auto">
             {% block main %}
                 <p><b>Username:</b> {{ request.user.username }}</p>
-                <p><b>Email:</b> {{ request.user.email }}</p>
+                <p class="mb-5"><b>Email:</b> {{ request.user.email }}</p>
                 <a href="{% url 'account_change_password' %}" class="btn profile-btn mb-2">Change Password</a><br>
                 <a href="{% url 'account_logout' %}" class="btn profile-btn">Logout</a>
             {% endblock %}
