@@ -3,6 +3,18 @@
 {% block content %}
     <section class="container">
         <h1 class="title">Shopping bag</h1>
-
+        {% for item in bag_items %}
+            <p>Product: {{ item.product.name }}, Quantity: {{ item.quantity }}</p>
+            <p>Price: € {{ item.product.price }}</p>
+            {% empty %}
+            <p>Your bag is empty now, <a href="{% url 'products' %}">continue shopping</a>.</p>
+        {% endfor %}
+        {% if bag_items %}
+            <div class="bag-totals">
+                <p>Total: € {{ total }}</p>
+                <p>Delivery: {% if delivery %}€ {{ delivery }}{% else %} Free {% endif %}</p>
+                <p>Grand Total: € {{ grand_total }}</p>
+            </div>
+        {% endif %}
     </section>
 {% endblock %}
