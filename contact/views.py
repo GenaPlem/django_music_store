@@ -4,7 +4,7 @@ from django.conf import settings
 from .forms import ContactForm
 
 
-def contact(request):
+def contact_view(request):
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)

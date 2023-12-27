@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 
 
-def all_products(request, category_slug=None):
+def all_products_view(request, category_slug=None):
     category = None
     categories = Category.objects.all()
     products = Product.objects.all()
@@ -39,6 +39,6 @@ def all_products(request, category_slug=None):
     return render(request, 'products/products.html', context)
 
 
-def product_detail(request, slug):
+def product_detail_view(request, slug):
     product = get_object_or_404(Product, slug=slug)
     return render(request, 'products/product_detail.html', {'product': product})
