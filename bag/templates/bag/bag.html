@@ -8,7 +8,7 @@
                 {% for item in bag_items %}
                     <div class="bag-item d-flex gap-4 mb-4">
                         <div class="bag-item-img rounded-4 col-5">
-                            <img src="{{ item.product.image.url }}" alt="">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" draggable="false">
                         </div>
                         <div class="bag-item-info col-6">
                             <p>{{ item.product.name }}</p>
