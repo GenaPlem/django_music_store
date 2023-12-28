@@ -319,9 +319,28 @@ main {
     margin: auto;
 }
 
+
 #quantity-update {
     background-color: inherit;
     border: none;
+}
+
+.quantity-dec, .quantity-inc,
+.quantity-num {
+    background-color: #fff;
+    border: none;
+}
+
+.quantity-dec {
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.quantity-inc {
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.quantity-num {
+    text-align: center;
 }
 
 .bag-totals {
