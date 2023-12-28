@@ -60,6 +60,10 @@ main {
     margin-bottom: 1.5rem;
 }
 
+.badge {
+    font-size: 0.4rem;
+}
+
 .font-days {
     font-family: 'Days One', sans-serif;
 }
@@ -352,6 +356,10 @@ main {
 
     .title {
         font-size: 3rem;
+    }
+
+    .badge {
+        font-size: 0.6rem;
     }
 
     .header {

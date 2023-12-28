@@ -33,8 +33,12 @@
                     <a href="#" class="nav-icon-link me-2">
                         <img src="{% static 'icons/icon_heart.svg' %}" alt="Heart icon">
                     </a>
-                    <a href="{% url 'bag' %}" class="nav-icon-link me-2">
+                    <a href="{% url 'bag' %}" class="nav-icon-link me-2 position-relative">
                         <img src="{% static 'icons/icon_shopping_bag.svg' %}" alt="Shopping bag icon">
+                        {% if product_count %}
+                            <span
+                                class="badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">{{ product_count }}</span>
+                        {% endif %}
                     </a>
                     <a href="{% url 'profile' %}" class="nav-icon-link">
                         <img src="{% static 'icons/icon_user.svg' %}" alt="Profile icon">
@@ -94,8 +98,12 @@
                     <a href="#" class="nav-icon-link">
                         <img src="{% static 'icons/icon_heart.svg' %}" alt="Heart icon">
                     </a>
-                    <a href="{% url 'bag' %}" class="nav-icon-link">
+                    <a href="{% url 'bag' %}" class="nav-icon-link position-relative">
                         <img src="{% static 'icons/icon_shopping_bag.svg' %}" alt="Shopping bag icon">
+                        {% if product_count %}
+                            <span
+                                class="badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">{{ product_count }}</span>
+                        {% endif %}
                     </a>
                     <a href="{% url 'profile' %}" class="nav-icon-link">
                         <img src="{% static 'icons/icon_user.svg' %}" alt="Profile icon">
