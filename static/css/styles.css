@@ -319,6 +319,11 @@ main {
     margin: auto;
 }
 
+#quantity-update {
+    background-color: inherit;
+    border: none;
+}
+
 .bag-totals {
     background-color: #fff;
     min-width: 20rem;

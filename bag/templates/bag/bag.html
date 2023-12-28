@@ -30,7 +30,8 @@
                                     <button type="button" class="quantity-inc" data-product-id="{{ item.product.id }}">+
                                     </button>
                                 </div>
-                                <button type="submit" class="purple-link me-3 me-md-5">Update</button>
+                                <button type="submit" class="purple-link me-3 me-md-5" id='quantity-update'>Update
+                                </button>
                                 <a href="{% url 'remove_from_bag' item.product.id %}" class="purple-link">Remove</a>
                             </form>
                         </div>
