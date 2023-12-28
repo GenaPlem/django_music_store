@@ -294,6 +294,32 @@ main {
     max-width: 35rem;
 }
 
+/* Bag */
+.bag-item-img {
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 20px 1px rgba(0, 0, 0, 0.10);
+    border: none;
+    max-height: 9rem;
+}
+
+.bag-item-img img {
+    max-height: 100%;
+    max-width: 100%;
+    width: unset;
+    margin: auto;
+}
+
+.bag-totals {
+    background-color: #fff;
+    min-width: 20rem;
+}
+
+#checkout-btn {
+    width: 100%;
+    border-radius: unset !important;
+}
+
 /* Footer */
 .purple-link {
     color: #62337F;

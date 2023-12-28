@@ -3,18 +3,41 @@
 {% block content %}
     <section class="container">
         <h1 class="title">Shopping bag</h1>
-        {% for item in bag_items %}
-            <p>Product: {{ item.product.name }}, Quantity: {{ item.quantity }}</p>
-            <p>Price: € {{ item.product.price }}</p>
-            {% empty %}
-            <p>Your bag is empty now, <a href="{% url 'products' %}" class="purple-link">continue shopping.</a></p>
-        {% endfor %}
-        {% if bag_items %}
-            <div class="bag-totals">
-                <p>Total: € {{ total }}</p>
-                <p>Delivery: {% if delivery %}€ {{ delivery }}{% else %} Free {% endif %}</p>
-                <p>Grand Total: € {{ grand_total }}</p>
+        <div class="d-flex flex-column flex-lg-row justify-content-lg-between">
+            <div class="items">
+                {% for item in bag_items %}
+                    <div class="bag-item d-flex gap-4 mb-4">
+                        <div class="bag-item-img rounded-4 col-5">
+                            <img src="{{ item.product.image.url }}" alt="">
+                        </div>
+                        <div class="bag-item-info col-6">
+                            <p>{{ item.product.name }}</p>
+                            {% if item.product.discount_percentage > 0 %}
+                                <span class="align-self-end original-price">€ {{ item.product.price }}</span>
+                                <p><b>€ {{ item.product.discounted_price }}</b></p>
+                            {% else %}
+                                <p><b>€ {{ item.product.price }}</b></p>
+                            {% endif %}
+                            <p><b>Quantity: </b>{{ item.quantity }}</p>
+                            <a href="{% url 'remove_from_bag' item.product.id %}" class="purple-link">Remove</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>Your bag is empty now, <a href="{% url 'products' %}" class="purple-link">continue shopping.</a>
+                    </p>
+                {% endfor %}
             </div>
-        {% endif %}
+            {% if bag_items %}
+                <div class="bag-totals p-4 mb-3 text-center align-self-lg-start">
+                    <p><b>Order Summary</b></p>
+                    <hr>
+                    <p>Total: € {{ total }}</p>
+                    <p>Shipping: {% if delivery %}€ {{ delivery }}.00{% else %} Free {% endif %}</p>
+                    <hr>
+                    <p>Grand Total: € {{ grand_total }}</p>
+                    <a href="#" class="btn purple-btn" id="checkout-btn">CHECKOUT</a>
+                </div>
+            {% endif %}
+        </div>
     </section>
 {% endblock %}
