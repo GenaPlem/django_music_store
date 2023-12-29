@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'profiles',
     'contact',
     'bag',
+    'checkout',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
