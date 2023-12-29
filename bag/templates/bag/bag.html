@@ -19,14 +19,16 @@
                             {% else %}
                                 <p><b>€ {{ item.product.price }}</b></p>
                             {% endif %}
+                            <p><b>In stock: </b>{{ item.product.quantity_in_stock }}</p>
                             <form action="{% url 'update_bag' item.product.id %}" method="post">
                                 {% csrf_token %}
-                                <label for="quantity-{{ item.product.id }}" class="mb-3"><b>Quantity: </b></label>
+                                <label for="quantity-{{ item.product.id }}" class="mb-1"><b>Quantity: </b></label>
                                 <div class="input-group mb-4">
                                     <button type="button" class="quantity-dec" data-product-id="{{ item.product.id }}">-
                                     </button>
                                     <input type="number" name="quantity" id="quantity-{{ item.product.id }}"
-                                           class="quantity-num" readonly value="{{ item.quantity }}" min="1" max="99">
+                                           class="quantity-num" readonly value="{{ item.quantity }}" min="1"
+                                           max="{{ item.product.quantity_in_stock }}">
                                     <button type="button" class="quantity-inc" data-product-id="{{ item.product.id }}">+
                                     </button>
                                 </div>

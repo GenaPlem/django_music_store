@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             let productId = button.dataset.productId;
             let quantityInput = document.querySelector('#quantity-' + productId);
-            quantityInput.value = parseInt(quantityInput.value) + 1;
-            console.log('here')
+            let maxQuantity = parseInt(quantityInput.max);
+
+            if (parseInt(quantityInput.value) + 1 <= maxQuantity) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            } else {
+                quantityInput.value = maxQuantity;
+            }
         });
     });
 
@@ -14,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let quantityInput = document.querySelector('#quantity-' + productId);
             if (parseInt(quantityInput.value) > 1) {
                 quantityInput.value = parseInt(quantityInput.value) - 1;
-                console.log('there')
             }
         });
     });
