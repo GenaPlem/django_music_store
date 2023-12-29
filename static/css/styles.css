@@ -341,6 +341,11 @@ main {
 
 .quantity-num {
     text-align: center;
+    cursor: default;
+}
+
+.quantity-num:focus-visible {
+    outline: none;
 }
 
 .bag-totals {
