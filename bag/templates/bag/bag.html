@@ -51,7 +51,7 @@
                     <p>Shipping: {% if delivery %}€ {{ delivery }}.00{% else %} Free {% endif %}</p>
                     <hr>
                     <p>Grand Total: € {{ grand_total }}</p>
-                    <a href="#" class="btn purple-btn" id="checkout-btn">CHECKOUT</a>
+                    <a href="{% url 'checkout' %}" class="btn purple-btn" id="checkout-btn">CHECKOUT</a>
                 </div>
             {% endif %}
         </div>
