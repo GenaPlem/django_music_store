@@ -3,6 +3,11 @@ from .forms import OrderForm
 
 
 def checkout_view(request):
+    bag = request.session.get('bag', {})
+    if not bag:
+        # Redirect to bag page if bag is empty
+        return redirect('bag')
+
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
