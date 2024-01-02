@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="container my-5">
+        <h1 class="title">Thank you for order!</h1>
+        <p>Your order number is {{ order.order_number }}.</p>
+        <p>A confirmation email will be sent to {{ order.email }}.</p>
+    </section>
+{% endblock %}
