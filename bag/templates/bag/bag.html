@@ -8,6 +8,7 @@
         <div class="d-flex flex-column flex-lg-row justify-content-lg-between">
             <div class="items">
                 {% for item in bag_items %}
+                    <hr class="me-lg-3">
                     <div class="bag-item d-flex gap-4 mb-4">
                         <div class="bag-item-img rounded-4 col-5">
                             <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" draggable="false">
