@@ -14,7 +14,7 @@ class Order(models.Model):
     address1 = models.CharField(max_length=250)
     address2 = models.CharField(max_length=250, blank=True)
     city = models.CharField(max_length=100)
-    county = models.CharField(max_length=80, null=True, blank=True)
+    county = models.CharField(max_length=80, null=False, blank=False)
     postal_code = models.CharField(max_length=20)
     created = models.DateTimeField(auto_now_add=True)
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
