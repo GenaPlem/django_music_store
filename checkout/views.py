@@ -1,71 +1,73 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from bag.context_processors import bag_contents
-from products.models import Product
 from django.conf import settings
+import stripe
 from .forms import OrderForm
-from .models import OrderLineItem, Order
+from .models import Order, OrderLineItem
+from bag.context_processors import bag_contents
+from django.contrib import messages
+from products.models import Product
 
 
 def checkout_view(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
+    stripe.api_key = stripe_secret_key
     bag = request.session.get('bag', {})
-    if not bag:
-        # Redirect to bag page if bag is empty
-        return redirect('bag')
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-
-            bag = bag_contents(request)
-            order.total = bag['total']
-            order.delivery = bag['delivery']
-            order.grand_total = bag['grand_total']
-
-            if request.user.is_authenticated:
-                order.user = request.user
-
+            pid = request.POST.get('payment_intent_id', '')
+            order.stripe_pid = pid
             order.save()
 
-            for item in bag['bag_items']:
-                product_id = int(item['item_id'])
-                quantity = item['quantity']
-                product = Product.objects.get(id=product_id)
+            for item_id, quantity in bag.items():
+                product = Product.objects.get(id=item_id)
                 OrderLineItem.objects.create(
                     order=order,
                     product=product,
-                    price=product.price,
-                    quantity=quantity
+                    quantity=quantity,
+                    price=product.price
                 )
 
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
-
+        else:
+            messages.error(request, "There was an error with your form. Please double check your information.")
     else:
         form = OrderForm()
+
+    if not bag:
+        messages.error(request, "Your bag is empty.")
+        return redirect(reverse('products'))
+
+    current_bag = bag_contents(request)
+    total = current_bag['grand_total']
+    stripe_total = round(total * 100)
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
 
     context = {
         'form': form,
         'stripe_public_key': stripe_public_key,
-        # 'client_secret': intent.client_secret,
+        'client_secret': intent.client_secret
     }
 
     return render(request, 'checkout/checkout.html', context)
 
 
 def checkout_success_view(request, order_number):
-    """
-    Handle successful checkouts
-    """
     order = get_object_or_404(Order, order_number=order_number)
-
-    if 'bag' in request.session:
-        del request.session['bag']
+    messages.success(request, f'Order successfully processed! Your order number is {order_number}.')
 
     context = {
         'order': order,
     }
+
+    if 'bag' in request.session:
+        del request.session['bag']
 
     return render(request, 'checkout/checkout_success.html', context)
