@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from bag.context_processors import bag_contents
 from products.models import Product
+from django.conf import settings
 from .forms import OrderForm
 from .models import OrderLineItem, Order
 
 
 def checkout_view(request):
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+
     bag = request.session.get('bag', {})
     if not bag:
         # Redirect to bag page if bag is empty
@@ -42,7 +46,13 @@ def checkout_view(request):
     else:
         form = OrderForm()
 
-    return render(request, 'checkout/checkout.html', {'form': form})
+    context = {
+        'form': form,
+        'stripe_public_key': stripe_public_key,
+        # 'client_secret': intent.client_secret,
+    }
+
+    return render(request, 'checkout/checkout.html', context)
 
 
 def checkout_success_view(request, order_number):
