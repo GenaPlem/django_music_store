@@ -42,6 +42,16 @@ class Order(models.Model):
             self.order_number = Order._generate_order_number()
         super().save(*args, **kwargs)
 
+    def update_total(self):
+        """
+        Update the order total by aggregating the prices of the line items.
+        This should also include the delivery cost if applicable.
+        """
+        self.total = sum(lineitem.lineitem_total for lineitem in self.items.all())
+        # Include any additional calculations for delivery, etc.
+        self.grand_total = self.total + self.delivery
+        self.save()
+
     def __str__(self):
         return f'Order {self.order_number}'
 
@@ -51,7 +61,7 @@ class OrderLineItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineitem_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """
