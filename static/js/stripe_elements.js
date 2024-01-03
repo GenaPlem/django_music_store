@@ -1,4 +1,5 @@
 let stripePublicKey = document.getElementById('id_stripe_public_key').text.slice(1, -1);
+let clientSecret = document.getElementById('id_client_secret').text.slice(1, -1);
 
 let stripe = Stripe(stripePublicKey);
 let elements = stripe.elements();
@@ -30,28 +31,47 @@ card.on('change', function (event) {
 });
 
 let form = document.getElementById('payment-form');
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
+let submitBtn = document.getElementById('submit-btn');
+form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    card.update({'disabled': true});
+    submitBtn.setAttribute('disabled', 'true');
 
-    stripe.createPaymentMethod('card', card).then(function (result) {
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+            billing_details: {
+                name: form.full_name.value,
+                email: form.email.value,
+                phone: form.phone_number.value,
+                address: {
+                    line1: form.address1.value,
+                    line2: form.address2.value,
+                    city: form.city.value,
+                    postal_code: form.postal_code.value,
+                    state: form.county.value
+                }
+            }
+        }
+    }).then(function (result) {
         if (result.error) {
-            // Show error in #card-errors
+            // Display error.message in your UI.
             let errorElement = document.getElementById('card-errors');
             errorElement.textContent = result.error.message;
+            card.update({'disabled': false});
+            submitBtn.removeAttribute('disabled');
         } else {
-            // Send the payment method ID to your server
-            stripePaymentMethodHandler(result.paymentMethod.id);
+            // The payment has been processed!
+            if (result.paymentIntent.status === 'succeeded') {
+                // Submit the form with the paymentIntent id
+                let paymentIntentId = result.paymentIntent.id;
+                let hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'payment_intent_id');
+                hiddenInput.setAttribute('value', paymentIntentId);
+                form.appendChild(hiddenInput);
+                form.submit();
+            }
         }
     });
 });
-
-function stripePaymentMethodHandler(paymentMethodId) {
-    let form = document.getElementById('payment-form');
-    let hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'payment_method_id');
-    hiddenInput.setAttribute('value', paymentMethodId);
-    form.appendChild(hiddenInput);
-
-    form.submit();
-}
