@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+from checkout.models import Order
+
 
 @login_required
 def profile_view(request):
@@ -9,7 +11,13 @@ def profile_view(request):
 
 @login_required
 def orders_view(request):
-    return render(request, 'profiles/orders.html')
+    orders = Order.objects.filter(user=request.user).order_by('-created')
+
+    context = {
+        'orders': orders,
+    }
+
+    return render(request, 'profiles/orders.html', context)
 
 
 @login_required

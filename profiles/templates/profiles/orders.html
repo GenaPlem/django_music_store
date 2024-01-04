@@ -2,4 +2,21 @@
 
 {% block main %}
     <p>Orders</p>
+    {% for order in orders %}
+        <div class="order">
+            <hr>
+            <h5>Order Number: {{ order.order_number }}</h5>
+            <h6><b>Items:</b></h6>
+            {% for item in order.items.all %}
+                <p>{{ item.product.name }}</p>
+            {% endfor %}
+            <div class="d-flex justify-content-between">
+                <p><b>Date:</b> {{ order.created }}</p>
+                <p><b>Status:</b> {% if order.paid %}<span></span>{% endif %}</p>
+                <p><b>Total:</b> € {{ order.grand_total }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>You have no orders yet.</p>
+    {% endfor %}
 {% endblock %}
