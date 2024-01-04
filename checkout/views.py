@@ -20,6 +20,10 @@ def checkout_view(request):
             order = form.save(commit=False)
             pid = request.POST.get('payment_intent_id', '')
             order.stripe_pid = pid
+            if request.user.is_authenticated:
+                order.user = request.user
+            else:
+                order.user = None
             order.save()
 
             for item_id, quantity in bag.items():
@@ -31,7 +35,6 @@ def checkout_view(request):
                     price=product.price
                 )
 
-            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, "There was an error with your form. Please double check your information.")
