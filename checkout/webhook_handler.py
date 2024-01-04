@@ -1,6 +1,10 @@
 import json
 import time
+from django.conf import settings
+from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.template.loader import render_to_string
+
 from .models import Order, OrderLineItem
 from products.models import Product
 
@@ -13,6 +17,13 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
+
+    def _send_confirmation_email(self, order):
+        """Отправка email-подтверждения заказа"""
+        from_email = settings.EMAIL_HOST_USER
+        subject = render_to_string('email/confirmation_email_subject.txt', {'order': order})
+        body = render_to_string('email/confirmation_email_body.txt', {'order': order})
+        send_mail(subject, body, from_email, [order.email])
 
     def handle_payment_intent_succeeded(self, event):
         intent = event.data.object

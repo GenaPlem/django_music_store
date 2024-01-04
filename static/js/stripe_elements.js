@@ -55,15 +55,12 @@ form.addEventListener('submit', function (ev) {
         }
     }).then(function (result) {
         if (result.error) {
-            // Display error.message in your UI.
             let errorElement = document.getElementById('card-errors');
             errorElement.textContent = result.error.message;
             card.update({'disabled': false});
             submitBtn.removeAttribute('disabled');
         } else {
-            // The payment has been processed!
             if (result.paymentIntent.status === 'succeeded') {
-                // Submit the form with the paymentIntent id
                 let paymentIntentId = result.paymentIntent.id;
                 let hiddenInput = document.createElement('input');
                 hiddenInput.setAttribute('type', 'hidden');
