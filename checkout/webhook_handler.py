@@ -19,7 +19,6 @@ class StripeWH_Handler:
             status=200)
 
     def _send_confirmation_email(self, order):
-        """Отправка email-подтверждения заказа"""
         from_email = settings.EMAIL_HOST_USER
         subject = render_to_string('email/confirmation_email_subject.txt', {'order': order})
         body = render_to_string('email/confirmation_email_body.txt', {'order': order})
