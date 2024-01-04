@@ -384,6 +384,11 @@ main {
     color: #aab7c4;
 }
 
+/* Profile */
+.order-number {
+    font-size: 1rem;
+}
+
 /* Footer */
 .purple-link {
     color: #62337F;
