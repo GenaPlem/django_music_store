@@ -14,9 +14,16 @@ def all_products_view(request, category_slug=None):
         products = products.filter(category=category)
 
     query = request.GET.get('q')
+    search_done = False
+    search_result = True
+
     if query:
+        search_done = True
         queries = Q(name__icontains=query) | Q(description__icontains=query)
         products = products.filter(queries)
+
+        if not products.exists():
+            search_result = False
 
     paginator = Paginator(products, 6)
     page = request.GET.get('page')
@@ -34,6 +41,8 @@ def all_products_view(request, category_slug=None):
         'products': products,
         'page': page,
         'query': query,
+        'search_done': search_done,
+        'search_result': search_result,
     }
 
     return render(request, 'products/products.html', context)
