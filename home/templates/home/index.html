@@ -114,12 +114,13 @@
                 <h3 class="title text-white my-0">Sign up for Newsletters</h3>
                 <p class="text-white">to get E-mails updates about our special offers</p>
             </div>
-            <div class="input-group mb-3">
-                <input class="form-control" type="email" name="newsletter_email" id="newsletter_email"
+            <form class="input-group mb-3" method='post' action="{% url 'newsletter_subscribe' %}">
+                {% csrf_token %}
+                <input class="form-control" type="email" name="email" id="newsletter_email"
                        aria-describedby="news_btn" aria-label="Subscription for newsletters"
                        placeholder="Enter your E-mail">
-                <button type="button" class="btn bg-black p-2 text-white" id="news_btn">Sign Up</button>
-            </div>
+                <button type="submit" class="btn bg-black p-2 text-white" id="news_btn">Sign Up</button>
+            </form>
         </div>
     </section>
 {% endblock %}
