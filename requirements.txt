@@ -10,8 +10,10 @@ Django==5.0
 django-allauth==0.59.0
 django-autoslug==1.9.9
 django-crispy-forms==2.1
+gunicorn==21.2.0
 idna==3.6
 oauthlib==3.2.2
+packaging==23.2
 Pillow==10.1.0
 psycopg2==2.9.9
 pycparser==2.21
