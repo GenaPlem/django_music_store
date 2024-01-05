@@ -117,7 +117,7 @@ WSGI_APPLICATION = 'mtune.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
