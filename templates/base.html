@@ -30,7 +30,7 @@
                     <button class="nav-icon-link me-2 search-icon">
                         <img src="{% static 'icons/icon_search.svg' %}" alt="Search icon">
                     </button>
-                    <a href="#" class="nav-icon-link me-2">
+                    <a href="{% url 'wishlist' %}" class="nav-icon-link me-2">
                         <img src="{% static 'icons/icon_heart.svg' %}" alt="Heart icon">
                     </a>
                     <a href="{% url 'bag' %}" class="nav-icon-link me-2 position-relative">
@@ -95,7 +95,7 @@
                     <button class="nav-icon-link search-icon">
                         <img src="{% static 'icons/icon_search.svg' %}" alt="Search icon">
                     </button>
-                    <a href="#" class="nav-icon-link">
+                    <a href="{% url 'wishlist' %}" class="nav-icon-link">
                         <img src="{% static 'icons/icon_heart.svg' %}" alt="Heart icon">
                     </a>
                     <a href="{% url 'bag' %}" class="nav-icon-link position-relative">
