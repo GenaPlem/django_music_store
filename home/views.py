@@ -5,12 +5,25 @@ from django.shortcuts import render, redirect
 from home.forms import NewsletterForm
 from home.models import NewsletterSubscriber
 from products.models import Product
+from wishlist.models import WishlistItem
 
 
 def home_view(request):
     """ A view to return the index page """
     top_products = Product.objects.filter(is_top_product=True)[:6]
-    return render(request, 'home/index.html', {'top_products': top_products})
+
+    if request.user.is_authenticated:
+        # Получаем список идентификаторов продуктов из списка желаний пользователя
+        wishlist_product_ids = WishlistItem.objects.filter(user=request.user).values_list('product_id', flat=True)
+    else:
+        wishlist_product_ids = []
+
+    context = {
+        'top_products': top_products,
+        'wishlist_product_ids': wishlist_product_ids
+    }
+
+    return render(request, 'home/index.html', context)
 
 
 def newsletter_subscribe(request):
