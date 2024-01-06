@@ -58,4 +58,15 @@ def all_products_view(request, category_slug=None):
 
 def product_detail_view(request, slug):
     product = get_object_or_404(Product, slug=slug)
-    return render(request, 'products/product_detail.html', {'product': product})
+
+    if request.user.is_authenticated:
+        wishlist_product_ids = WishlistItem.objects.filter(user=request.user).values_list('product_id', flat=True)
+    else:
+        wishlist_product_ids = []
+
+    context = {
+        'product': product,
+        'wishlist_product_ids': wishlist_product_ids,
+    }
+
+    return render(request, 'products/product_detail.html', context)
