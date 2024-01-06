@@ -21,8 +21,8 @@ class StripeWH_Handler:
 
     def _send_confirmation_email(self, order):
         from_email = settings.EMAIL_HOST_USER
-        subject = render_to_string('checkout/email/confirmation_email_subject.txt', {'order': order})
-        body = render_to_string('checkout/email/confirmation_email_body.txt', {'order': order})
+        subject = render_to_string('email/confirmation_email_subject.txt', {'order': order})
+        body = render_to_string('email/confirmation_email_body.txt', {'order': order})
         send_mail(subject, body, from_email, [order.email])
 
     def handle_payment_intent_succeeded(self, event):
