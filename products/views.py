@@ -1,6 +1,8 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
+
+from wishlist.models import WishlistItem
 from .models import Product, Category
 
 
@@ -25,6 +27,11 @@ def all_products_view(request, category_slug=None):
         if not products.exists():
             search_result = False
 
+    if request.user.is_authenticated:
+        wishlist_product_ids = WishlistItem.objects.filter(user=request.user).values_list('product_id', flat=True)
+    else:
+        wishlist_product_ids = []
+
     paginator = Paginator(products, 6)
     page = request.GET.get('page')
 
@@ -43,6 +50,7 @@ def all_products_view(request, category_slug=None):
         'query': query,
         'search_done': search_done,
         'search_result': search_result,
+        'wishlist_product_ids': wishlist_product_ids,
     }
 
     return render(request, 'products/products.html', context)
