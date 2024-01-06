@@ -69,7 +69,6 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                     paid=True
                 )
-                self._send_confirmation_email(order)
 
                 # for item_id, quantity in bag.items():
                 #     product = Product.objects.get(id=item_id)
@@ -88,12 +87,12 @@ class StripeWH_Handler:
                     status=500)
 
         if order_exists:
-            # self._send_confirmation_email(order)
+            self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
 
-        # self._send_confirmation_email(order)
+        self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
