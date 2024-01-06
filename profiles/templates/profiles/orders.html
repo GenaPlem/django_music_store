@@ -10,6 +10,12 @@
             {% for item in order.items.all %}
                 <p class="ms-2">{{ item.product.name }}</p>
             {% endfor %}
+            <p><b>Payment status: </b>
+                {% if order.paid %}
+                    <span class="text-success">Successfuly paid!</span>
+                {% else %}
+                    <span class="text-danger">Incomplete</span>
+                {% endif %}</p>
             <div class="d-flex justify-content-between">
                 <p><b>{{ order.created }}</b></p>
                 <p><b>Total:</b> € {{ order.grand_total }}</p>
