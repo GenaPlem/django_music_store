@@ -28,14 +28,14 @@ class StripeWH_Handler:
     def handle_payment_intent_succeeded(self, event):
         intent = event.data.object
         pid = intent.id
-        username = intent.metadata.get('username', 'AnonymousUser')
+        # username = intent.metadata.get('username', 'AnonymousUser')
 
-        user = None
-        if username != 'AnonymousUser':
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                user = None
+        # user = None
+        # if username != 'AnonymousUser':
+        #     try:
+        #         user = User.objects.get(username=username)
+        #     except User.DoesNotExist:
+        #         user = None
 
         order_exists = False
         attempt = 1
@@ -44,7 +44,7 @@ class StripeWH_Handler:
                 order = Order.objects.get(stripe_pid=pid, grand_total=intent.amount / 100)
                 order_exists = True
                 order.paid = True
-                order.user = user
+                # order.user = user
                 order.save()
                 break
             except Order.DoesNotExist:
@@ -54,7 +54,7 @@ class StripeWH_Handler:
         if not order_exists:
             try:
                 order = Order.objects.create(
-                    user=user,
+                    # user=user,
                     full_name=intent.billing_details.name,
                     email=intent.billing_details.email,
                     phone_number=intent.billing_details.phone,
@@ -70,15 +70,15 @@ class StripeWH_Handler:
                     paid=True
                 )
 
-                for item_id, quantity in bag.items():
-                    product = Product.objects.get(id=item_id)
-                    order_line_item = OrderLineItem(
-                        order=order,
-                        product=product,
-                        quantity=quantity,
-                        price=product.price
-                    )
-                    order_line_item.save()
+                # for item_id, quantity in bag.items():
+                #     product = Product.objects.get(id=item_id)
+                #     order_line_item = OrderLineItem(
+                #         order=order,
+                #         product=product,
+                #         quantity=quantity,
+                #         price=product.price
+                #     )
+                #     order_line_item.save()
             except Exception as e:
                 if order:
                     order.delete()
