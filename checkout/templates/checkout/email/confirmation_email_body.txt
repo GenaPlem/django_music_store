@@ -2,18 +2,13 @@ Dear {{ order.full_name }},
 
 Thank you for shopping with us. Your order (Order Number: {{ order.order_number }}) has been successfully placed.
 
-Order Details:
-{% for item in order.items.all %}
-- {{ item.product.name }} (Quantity: {{ item.quantity }})
-{% endfor %}
-
-Total Cost: {{ order.grand_total }}.
-
 Your order will be shipped to:
 {{ order.address1 }}
 {% if order.address2 %}{{ order.address2 }}{% endif %}
 {{ order.postal_code }}, {{ order.city }}
 {{ order.county }}
+
+Total Cost: {{ order.grand_total }}.
 
 Estimated Delivery: Your order will be delivered within 10 business days.
 
