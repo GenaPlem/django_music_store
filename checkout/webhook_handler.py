@@ -46,7 +46,6 @@ class StripeWH_Handler:
                 order.paid = True
                 # order.user = user
                 order.save()
-                self._send_confirmation_email(order)
                 break
             except Order.DoesNotExist:
                 attempt += 1
@@ -70,6 +69,7 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                     paid=True
                 )
+                self._send_confirmation_email(order)
 
                 # for item_id, quantity in bag.items():
                 #     product = Product.objects.get(id=item_id)
@@ -81,19 +81,19 @@ class StripeWH_Handler:
                 #     )
                 #     order_line_item.save()
             except Exception as e:
-                if order:
-                    order.delete()
+                # if order:
+                #     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
 
         if order_exists:
-            self._send_confirmation_email(order)
+            # self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
 
-        self._send_confirmation_email(order)
+        # self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
