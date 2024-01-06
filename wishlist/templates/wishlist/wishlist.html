@@ -1,12 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Your Wishlist</h1>
-    <ul>
-        {% for item in wishlist_items %}
-            <li>{{ item.product.name }}</li>
-
-            {% empty %}
-            <li>No items in your wishlist.</li>
-        {% endfor %}
-    </ul>
+    <section class="container">
+        <h1 class="title">Your Wishlist</h1>
+        <div class="row">
+            {% for item in wishlist_items %}
+                <div class="col-6 col-md-4 mb-4">
+                    <div
+                        class="card item-card rounded-4 h-100 {% if item.product.discount_percentage > 0 %}on-sale{% endif %}">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <img class="card-img m-auto mb-2" src="{{ item.product.image.url }}" draggable="false"
+                                 alt="{{ item.product.name }}">
+                            <p class="card-title text-center mt-auto">{{ item.product.name }}</p>
+                            {% if item.product.discount_percentage > 0 %}
+                                <span class="align-self-end original-price">€ {{ item.product.price }}</span>
+                                <a class="align-self-end stretched-link"
+                                   href="{% url 'product_detail' item.product.slug %}"><b>€ {{ item.product.discounted_price }}</b></a>
+                            {% else %}
+                                <a class="align-self-end stretched-link mt-3"
+                                   href="{% url 'product_detail' item.product.slug %}"><b>€ {{ item.product.price }}</b></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center">No items in your wishlist.</p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

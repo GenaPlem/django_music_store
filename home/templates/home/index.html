@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block content %}
@@ -71,6 +70,21 @@
                                 {% else %}
                                     <a class="align-self-end stretched-link mt-3"
                                        href="{% url 'product_detail' product.slug %}"><b>€ {{ product.price }}</b></a>
+                                {% endif %}
+                            </div>
+                            <div class="wishlist_btn z-1">
+                                {% if product.id in wishlist_product_ids %}
+                                    <a href="{% url 'remove_from_wishlist' product.id %}">
+                                        <img src="{% static 'icons/icon_heart_full.svg' %}" alt="Wishlist icon"
+                                             width="26"
+                                             height="26">
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'add_to_wishlist' product.id %}">
+                                        <img src="{% static 'icons/icon_heart.svg' %}" alt="Wishlist icon"
+                                             width="26"
+                                             height="26">
+                                    </a>
                                 {% endif %}
                             </div>
                         </div>
