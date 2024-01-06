@@ -20,9 +20,20 @@ def newsletter_subscribe(request):
             email = form.cleaned_data['email']
             if not NewsletterSubscriber.objects.filter(email=email).exists():
                 NewsletterSubscriber.objects.create(email=email)
+
+            message = (
+                "Hello!\n\n"
+                "We're excited to let you know that you've successfully subscribed to our newsletter. "
+                "Now you'll be among the first to hear about our latest news, special offers, and exclusive events. "
+                "We promise to bring you valuable content that's both informative and enjoyable.\n\n"
+                "Thank you for joining our community, and welcome aboard!\n\n"
+                "Best regards,\n"
+                "The M-TUNE Team"
+            )
+
             send_mail(
                 'Subscription Confirmation',
-                'Thank you for subscribing to our newsletter!',
+                message,
                 settings.EMAIL_HOST_USER,
                 [form.cleaned_data['email']],
                 fail_silently=False,
