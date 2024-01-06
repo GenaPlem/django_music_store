@@ -46,6 +46,7 @@ class StripeWH_Handler:
                 order.paid = True
                 # order.user = user
                 order.save()
+                self._send_confirmation_email(order)
                 break
             except Order.DoesNotExist:
                 attempt += 1
