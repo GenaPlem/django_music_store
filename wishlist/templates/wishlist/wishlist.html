@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
     <section class="container">
         <h1 class="title">Your Wishlist</h1>
@@ -19,6 +21,13 @@
                                 <a class="align-self-end stretched-link mt-3"
                                    href="{% url 'product_detail' item.product.slug %}"><b>€ {{ item.product.price }}</b></a>
                             {% endif %}
+                        </div>
+                        <div class="wishlist_btn z-1">
+                            <a href="{% url 'remove_from_wishlist' item.product.id %}">
+                                <img src="{% static 'icons/icon_heart_full.svg' %}" alt="Wishlist icon"
+                                     width="26"
+                                     height="26">
+                            </a>
                         </div>
                     </div>
                 </div>
