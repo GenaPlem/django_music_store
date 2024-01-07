@@ -25,10 +25,10 @@
                 <p><b>Username:</b> {{ request.user.username }}</p>
                 <p class="mb-5"><b>Email:</b> {{ request.user.email }}</p>
                 {% if request.user.is_superuser %}
-                    <a href="{% url 'add_product' %}" class="btn purple-btn mb-2">Add Product</a><br>
+                    <a href="{% url 'add_product' %}" class="purple-link me-4">Add Product</a>
                 {% endif %}
-                <a href="{% url 'account_change_password' %}" class="btn purple-btn mb-2">Change Password</a><br>
-                <a href="{% url 'account_logout' %}" class="btn purple-btn">Logout</a>
+                <a href="{% url 'account_change_password' %}" class="purple-link">Change Password</a><br>
+                <a href="{% url 'account_logout' %}" class="btn purple-btn mt-4">Logout</a>
             {% endblock %}
         </div>
     </section>
