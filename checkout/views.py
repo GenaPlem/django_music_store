@@ -48,6 +48,7 @@ def checkout_view(request):
             messages.error(request, "There was an error with your form. Please double check your information.")
     else:
         form = OrderForm()
+        messages.error(request, "There was an error with your form. Please double check your information.")
 
     if not bag:
         messages.error(request, "Your bag is empty.")
