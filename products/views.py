@@ -1,8 +1,12 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 from wishlist.models import WishlistItem
+from .forms import ProductForm
 from .models import Product, Category
 
 
@@ -70,3 +74,21 @@ def product_detail_view(request, slug):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def add_product(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('product_detail', args=[product.slug]))
+    else:
+        form = ProductForm()
+
+    return render(request, 'products/add_product.html', {'form': form})
