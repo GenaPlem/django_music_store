@@ -119,3 +119,19 @@ def edit_product(request, product_id):
     }
 
     return render(request, 'products/edit_product.html', context)
+
+
+@login_required
+def delete_product(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Only store owners can delete products.')
+        return redirect('home')
+
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        product.delete()
+        messages.success(request, 'Product successfully deleted!')
+        return redirect(reverse('products'))
+
+    context = {'product': product}
+    return render(request, 'products/delete_product.html', context)
