@@ -92,3 +92,30 @@ def add_product(request):
         form = ProductForm()
 
     return render(request, 'products/add_product.html', {'form': form})
+
+
+@login_required
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Only store owners can edit products.')
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product successfully updated!')
+            return redirect('product_detail', slug=product.slug)
+        else:
+            form = ProductForm(instance=product)
+
+    form = ProductForm(instance=product)
+
+    context = {
+        'form': form,
+        'product': product
+    }
+
+    return render(request, 'products/edit_product.html', context)
