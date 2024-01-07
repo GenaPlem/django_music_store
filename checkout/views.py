@@ -28,6 +28,14 @@ def checkout_view(request):
 
             for item_id, quantity in bag.items():
                 product = Product.objects.get(id=item_id)
+
+                if product.quantity_in_stock >= quantity:
+                    product.quantity_in_stock -= quantity
+                    product.save()
+                else:
+                    messages.error(request, f"Not enough {product.name} in stock.")
+                    return redirect(reverse('bag'))
+
                 OrderLineItem.objects.create(
                     order=order,
                     product=product,
