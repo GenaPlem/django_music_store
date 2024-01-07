@@ -60,5 +60,6 @@ def newsletter_subscribe(request):
         else:
             form = NewsletterForm()
             messages.error(request, 'Invalid email')
+            return redirect('home')
 
     return render(request, 'home/index.html', {'form': form})
