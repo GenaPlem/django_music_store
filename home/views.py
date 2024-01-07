@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
@@ -13,7 +14,6 @@ def home_view(request):
     top_products = Product.objects.filter(is_top_product=True)[:6]
 
     if request.user.is_authenticated:
-        # Получаем список идентификаторов продуктов из списка желаний пользователя
         wishlist_product_ids = WishlistItem.objects.filter(user=request.user).values_list('product_id', flat=True)
     else:
         wishlist_product_ids = []
@@ -33,6 +33,9 @@ def newsletter_subscribe(request):
             email = form.cleaned_data['email']
             if not NewsletterSubscriber.objects.filter(email=email).exists():
                 NewsletterSubscriber.objects.create(email=email)
+            else:
+                messages.error(request, 'This email already subscribed')
+                return redirect('home')
 
             message = (
                 "Hello!\n\n"
@@ -51,7 +54,11 @@ def newsletter_subscribe(request):
                 [form.cleaned_data['email']],
                 fail_silently=False,
             )
+            messages.success(request, 'Subscribed successfully')
             return redirect('home')
+
         else:
             form = NewsletterForm()
-    return render(request, 'home', {'form': form})
+            messages.error(request, 'Invalid email')
+
+    return render(request, 'home/index.html', {'form': form})
