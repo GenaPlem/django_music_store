@@ -30,8 +30,8 @@
                     <p><b>Material: </b>{{ product.material }}</p>
                     <p><b>Instrument type: </b>{{ product.instrument_type }}</p>
                     <p><b>Size: </b>{{ product.size_dimensions }}</p>
-                    <p><b>In stock: </b>{{ product.quantity_in_stock }}</p>
                     {% if product.quantity_in_stock > 0 %}
+                        <p><b>In stock: </b>{{ product.quantity_in_stock }}</p>
                         <form action="{% url 'add_to_bag' product.id %}" method="post">
                         {% csrf_token %}
                         <label for="quantity-{{ product.id }}" class="mb-1"></label>
