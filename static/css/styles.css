@@ -76,6 +76,10 @@ main {
     animation: slideDown 0.5s forwards;
 }
 
+.messages .error {
+    color: red;
+}
+
 .messages.hide {
     animation: slideUp 0.5s forwards;
 }
