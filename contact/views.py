@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
@@ -23,7 +24,9 @@ def contact_view(request):
                 recipient_list=[settings.EMAIL_HOST_USER],
             )
 
+            messages.success(request, 'Your message has been successfully sent.')
             return redirect('/')
         else:
             form = ContactForm()
+            messages.error(request, 'Something went wrong.')
     return render(request, 'contact/contact.html', {'form': form})

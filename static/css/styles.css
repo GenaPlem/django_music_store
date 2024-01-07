@@ -62,9 +62,9 @@ main {
 
 .messages {
     position: fixed;
-    top: 6rem;
+    top: 3rem;
     right: 1rem;
-    z-index: 999;
+    z-index: 9999;
     font-size: 0.6rem;
     padding: 0.5rem;
     margin-top: 0.5rem;
@@ -536,5 +536,9 @@ main {
 
     .bag-item-img {
         max-height: 17rem;
+    }
+
+    .messages {
+        font-size: 1rem;
     }
 }
