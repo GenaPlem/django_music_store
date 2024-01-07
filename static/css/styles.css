@@ -60,6 +60,37 @@ main {
     margin-bottom: 1.5rem;
 }
 
+.messages {
+    position: fixed;
+    top: 6rem;
+    right: 1rem;
+    z-index: 999;
+    font-size: 0.6rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 1rem;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.30);
+    max-width: 25rem;
+    animation: slideDown 0.5s forwards;
+}
+
+.messages.hide {
+    animation: slideUp 0.5s forwards;
+}
+
+@keyframes slideUp {
+    from {
+        top: 3rem;
+        opacity: 1;
+    }
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
 .badge {
     font-size: 0.4rem;
 }
