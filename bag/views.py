@@ -12,8 +12,14 @@ def bag_view(request):
 def add_to_bag_view(request, product_id):
     quantity = int(request.POST.get('quantity', 1))
     product = get_object_or_404(Product, pk=product_id)
-    add_to_bag(request, product.id, quantity)
-    messages.success(request, f'{product.name} added to your bag!')
+    success = add_to_bag(request, product.id, quantity)
+
+    if success:
+        messages.success(request, f'{product.name} added to your bag!')
+    else:
+        messages.warning(request,
+                         f'There is only {product.quantity_in_stock} {product.name} in stock. You can\'t add more.')
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'bag_view'))
 
 
@@ -27,6 +33,12 @@ def remove_from_bag_view(request, product_id):
 def update_bag_view(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     quantity = int(request.POST.get('quantity'))
-    update_bag(request, product_id, quantity)
-    messages.success(request, f'{product.name} quantity updated in your bag!')
+    success = update_bag(request, product_id, quantity)
+
+    if success:
+        messages.success(request, f'{product.name} quantity updated in your bag!')
+    else:
+        messages.warning(request,
+                         f'There is only {product.quantity_in_stock} {product.name} in stock. You can\'t add more.')
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', 'bag_view'))

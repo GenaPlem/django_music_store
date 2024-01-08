@@ -6,15 +6,12 @@ def add_to_bag(request, product_id, quantity=1):
     bag = request.session.get('bag', {})
     product = get_object_or_404(Product, pk=product_id)
 
-    current_quantity = bag.get(str(product_id), 0)
-    new_quantity = current_quantity + quantity
-
-    if new_quantity > product.quantity_in_stock:
-        bag[str(product_id)] = product.quantity_in_stock
+    if quantity > product.quantity_in_stock:
+        return False
     else:
-        bag[str(product_id)] = new_quantity
-
-    request.session['bag'] = bag
+        bag[str(product_id)] = min(bag.get(str(product_id), 0) + quantity, product.quantity_in_stock)
+        request.session['bag'] = bag
+        return True
 
 
 def remove_from_bag(request, product_id):
@@ -25,8 +22,11 @@ def remove_from_bag(request, product_id):
 
 def update_bag(request, product_id, quantity):
     bag = request.session.get('bag', {})
-    if quantity > 0:
-        bag[str(product_id)] = quantity
+    product = get_object_or_404(Product, pk=product_id)
+
+    if quantity > product.quantity_in_stock:
+        return False
     else:
-        remove_from_bag(request, product_id)
-    request.session['bag'] = bag
+        bag[str(product_id)] = quantity
+        request.session['bag'] = bag
+        return True
