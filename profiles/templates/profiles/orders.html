@@ -8,7 +8,7 @@
             <h5 class="order-number"><b>Order Number: </b>{{ order.order_number }}</h5>
             <h6><b>Items:</b></h6>
             {% for item in order.items.all %}
-                <p class="ms-2">{{ item.product.name }} <b>|</b> Qty: {{ item.quantity }}</p>
+                <p class="ms-2">- {{ item.product.name }} <b>|</b> Qty: {{ item.quantity }}</p>
             {% endfor %}
             <p><b>Payment status: </b>
                 {% if order.paid %}
