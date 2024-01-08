@@ -103,6 +103,10 @@ main {
     font-family: 'Days One', sans-serif;
 }
 
+.d-contents {
+    display: contents;
+}
+
 .header {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
     height: 2.5rem;
