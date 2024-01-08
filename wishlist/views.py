@@ -7,6 +7,7 @@ from products.models import Product
 from .models import WishlistItem
 
 
+@login_required
 def view_wishlist(request):
     wishlist_items = WishlistItem.objects.filter(user=request.user)
     return render(request, 'wishlist/wishlist.html', {'wishlist_items': wishlist_items})
