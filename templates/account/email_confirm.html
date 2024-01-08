@@ -22,7 +22,9 @@
             {% element form method="post" action=action_url %}
                 {% slot actions %}
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {% element button type="submit" class="btn purple-btn" %}
+                        {% trans 'Confirm' %}
+                    {% endelement %}
                 {% endslot %}
             {% endelement %}
         {% else %}
@@ -35,7 +37,7 @@
         {% url 'account_email' as email_url %}
         <p>
             {% blocktrans %}This email confirmation link expired or is invalid. Please
-                <a href="{{ email_url }}">issue a new email confirmation request</a>.{% endblocktrans %}
+                try again or contact us.{% endblocktrans %}
         </p>
     {% endif %}
 {% endblock content %}
