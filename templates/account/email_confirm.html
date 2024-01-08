@@ -22,9 +22,7 @@
             {% element form method="post" action=action_url %}
                 {% slot actions %}
                     {% csrf_token %}
-                    {% element button type="submit" class="btn purple-btn" %}
-                        {% trans 'Confirm' %}
-                    {% endelement %}
+                    <button type="submit" class="btn purple-btn" value="Confirm">
                 {% endslot %}
             {% endelement %}
         {% else %}
