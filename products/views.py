@@ -90,7 +90,6 @@ def add_product(request):
             return redirect(reverse('product_detail', args=[product.slug]))
     else:
         form = ProductForm()
-        messages.error(request, 'Something went wrong.')
 
     return render(request, 'products/add_product.html', {'form': form})
 
