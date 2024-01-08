@@ -1,6 +1,8 @@
 let stripePublicKey = document.getElementById('id_stripe_public_key').text.slice(1, -1);
 let clientSecret = document.getElementById('id_client_secret').text.slice(1, -1);
 
+let loadingOverlay = document.getElementById('loading-overlay');
+
 let stripe = Stripe(stripePublicKey);
 let elements = stripe.elements();
 
@@ -36,6 +38,7 @@ form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     card.update({'disabled': true});
     submitBtn.setAttribute('disabled', 'true');
+    loadingOverlay.style.display = 'flex';
 
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -59,6 +62,7 @@ form.addEventListener('submit', function (ev) {
             errorElement.textContent = result.error.message;
             card.update({'disabled': false});
             submitBtn.removeAttribute('disabled');
+            loadingOverlay.style.display = 'none';
         } else {
             if (result.paymentIntent.status === 'succeeded') {
                 let paymentIntentId = result.paymentIntent.id;
