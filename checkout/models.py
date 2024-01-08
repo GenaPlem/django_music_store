@@ -49,6 +49,11 @@ class Order(models.Model):
         """
         self.total = sum(lineitem.lineitem_total for lineitem in self.items.all())
         # Include any additional calculations for delivery, etc.
+        if self.total < settings.FREE_DELIVERY_THRESHOLD:
+            self.delivery = settings.STANDARD_DELIVERY_PRICE
+        else:
+            self.delivery = 0
+
         self.grand_total = self.total + self.delivery
         self.save()
 
@@ -71,6 +76,7 @@ class OrderLineItem(models.Model):
         if self.product.discount_percentage:
             discount = (self.product.price * self.product.discount_percentage / 100)
             discounted_price = self.product.price - discount
+            self.price = discounted_price
             self.lineitem_total = discounted_price * self.quantity
         else:
             self.lineitem_total = self.product.price * self.quantity
