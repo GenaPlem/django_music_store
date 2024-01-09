@@ -24,6 +24,19 @@ def contact_view(request):
                 recipient_list=[settings.EMAIL_HOST_USER],
             )
 
+            send_mail(
+                subject=f"Confirmation: We've Received Your Message, {contact_form.name}!",
+                message=(
+                    f"Dear {contact_form.name},\n\n"
+                    f"Thank you for reaching out to us!\n"
+                    f"We have received your message and are working to get back to you as soon as possible.\n\n"
+                    f"Kind regards,\n"
+                    f"The M-TUNE Team"
+                ),
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[contact_form.email],
+            )
+
             messages.success(request, 'Your message has been successfully sent.')
             return redirect('/')
         else:
