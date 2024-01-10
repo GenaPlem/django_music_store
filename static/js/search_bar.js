@@ -5,6 +5,6 @@ const searchBarForm = document.getElementById('searchBarForm');
 searchIcons.forEach(icon => {
     icon.addEventListener('click', () => {
         searchBarForm.classList.toggle('show');
-        searchBar.focus()
+        searchBar.focus();
     });
 });
