@@ -1,13 +1,10 @@
-import json
 import time
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-from .models import Order, OrderLineItem
-from products.models import Product
+from .models import Order
 
 
 class StripeWH_Handler:
