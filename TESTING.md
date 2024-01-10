@@ -294,6 +294,8 @@ The Lighthouse audit has been instrumental in pinpointing areas where the site p
 
 I encountered a specific bug related to Stripe payments and webhook handling. The issue arose with orders involving products on sale and when the delivery charge was 10€ (for orders below 100€).
 
+![Bugs screenshot](documentation/images/bugs/webhooks_error.png)
+
 **Resolution**
 
 1. Order Model - Update Total Method:<br><br>
@@ -336,6 +338,14 @@ def save(self, *args, **kwargs):
         self.lineitem_total = self.product.price * self.quantity
     super().save(*args, **kwargs)
    ```
+
+![Solved Bug screenshot](documentation/images/bugs/webhooks_success.png)
+
+**Conclusion:**
+
+The modifications were successful in resolving the issue. The Stripe dashboard now shows all payment requests as successful, indicating that the payment and webhook system is now functioning correctly for all scenarios, including discounted products and applicable delivery charges.
+
+![Stripe Dashboard](documentation/images/bugs/stripe_dashboard.png)
 
 ### Unfixed Bugs
 
