@@ -248,7 +248,7 @@ Sitemap: https://m-tune-d4849222b5e5.herokuapp.com/sitemap.xmlx
 
 ## Testing
 
-Comprehensive manual testing was conducted to ensure all functionalities work as intended. Details will be provided in `testing.md`.
+Comprehensive manual testing was conducted to ensure all functionalities work as intended. Details will be provided in [TESTING.md](TESTING.md).
 
 ## Technologies Used
 
@@ -288,6 +288,7 @@ Comprehensive manual testing was conducted to ensure all functionalities work as
 * [CI Python Linter](https://pep8ci.herokuapp.com/#) - Used to validate Python.
 * [Coolors](http://coolors.co/) - Color Scheme.
 * [Drawsql.app](https://drawsql.app/) - For database diagram.
+* [Uiball](https://uiball.com/) - For loader(spinner)
 
 ## Deployment
 
