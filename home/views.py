@@ -63,3 +63,7 @@ def newsletter_subscribe(request):
             return redirect('home')
 
     return render(request, 'home/index.html', {'form': form})
+
+
+def privacy_policy_view(request):
+    return render(request, 'privacy_policy.html')
