@@ -4,6 +4,35 @@
 
 Welcome to [M-TUNE](https://m-tune-d4849222b5e5.herokuapp.com/), your one-stop online shop for musical instruments and accessories. Our platform offers a seamless shopping experience with a wide range of products, from guitars to drum sets, all available at the click of a button.
 
+## Table of Contents
+
+- [Introduction](#m-tune-e-commerce-store)
+- [User Experience (UX)](#ux)
+- [Design Choices](#design)
+- [Features](#features)
+  - [Existing Features](#existing-features)
+  - [Future Features](#future-features)
+- [Important Stripe Payment Information](#-important-payment-processing-with-stripe)
+- [Agile Development](#agile-development)
+- [Database Design](#database-design)
+- [E-commerce Business Model](#e-commerce-business-model)
+- [SEO & Social Media Marketing](#seo--social-media-marketing)
+- [Testing](#testing)
+- [Technologies Used](#technologies-used)
+- [Deployment](#deployment)
+  - [ElephantSQL Database](#elephantsql-database)
+  - [Amazon AWS](#amazon-aws)
+  - [Stripe API](#stripe-api)
+  - [Gmail API](#gmail-api)
+  - [Heroku Deployment](#heroku-deployment)
+  - [Local Deployment](#local-deployment)
+- [Credits](#credits)
+  - [Docs](#docs)
+  - [Content](#content)
+  - [Acknowledgement](#acknowledgement)
+
+---
+
 ## UX
 
 Our philosophy in designing M-TUNE was rooted in simplicity and user-friendliness. We understand that a complex design can overwhelm and deter potential customers, which is why we've embraced a straightforward approach to our e-commerce platform. Our goal is to create an inviting environment that encourages users to explore and purchase musical instruments with ease.
@@ -248,7 +277,7 @@ Sitemap: https://m-tune-d4849222b5e5.herokuapp.com/sitemap.xmlx
 
 ## Testing
 
-Comprehensive manual testing was conducted to ensure all functionalities work as intended. Details will be provided in [TESTING.md](TESTING.md).
+Comprehensive manual testing was conducted to ensure all functionalities work as intended. Details provided in [TESTING.md](TESTING.md).
 
 ## Technologies Used
 
@@ -601,5 +630,9 @@ If you'd like to backup your database models, use the following command for each
 * All of the content is written by the developer.
 * Homepage images were generated with Dall-E (AI) based on my inputs.
 * Images for products were downloaded from [iStock](https://www.istockphoto.com/) using free trial subscription
+
+### Acknowledgement
+
+I would like to express my deepest appreciation to my mentor, Mitko Bachvarov, for his unwavering support and expert guidance throughout the development of this project. His thoughtful feedback and profound insights have been instrumental in refining the project's direction and achieving the desired results.
 
 ---
