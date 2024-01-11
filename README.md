@@ -289,6 +289,7 @@ Comprehensive manual testing was conducted to ensure all functionalities work as
 * [Coolors](http://coolors.co/) - Color Scheme.
 * [Drawsql.app](https://drawsql.app/) - For database diagram.
 * [Uiball](https://uiball.com/) - For loader(spinner)
+* [Privacy Policy Generator](https://www.privacypolicygenerator.info/) - To generate privacy policy
 
 ## Deployment
 
