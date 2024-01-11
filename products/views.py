@@ -11,6 +11,9 @@ from .models import Product, Category
 
 
 def all_products_view(request, category_slug=None):
+    """
+    View to render all products template
+    """
     category = None
     categories = Category.objects.all()
     products = Product.objects.all()
@@ -78,6 +81,9 @@ def product_detail_view(request, slug):
 
 @login_required
 def add_product(request):
+    """
+    View to add product as admin
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -96,6 +102,9 @@ def add_product(request):
 
 @login_required
 def edit_product(request, product_id):
+    """
+    View to edit product as admin
+    """
     product = get_object_or_404(Product, pk=product_id)
 
     if not request.user.is_superuser:
@@ -123,6 +132,9 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
+    """
+    View to delete product as admin
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Only store owners can delete products.')
         return redirect('home')

@@ -6,6 +6,9 @@ from .forms import ContactForm
 
 
 def contact_view(request):
+    """
+    Vies to render contact us template
+    """
     form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)

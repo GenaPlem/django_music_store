@@ -10,7 +10,7 @@ from wishlist.models import WishlistItem
 
 
 def home_view(request):
-    """ A view to return the index page """
+    """ A view to return the home page """
     top_products = Product.objects.filter(is_top_product=True)[:6]
 
     if request.user.is_authenticated:
@@ -27,6 +27,9 @@ def home_view(request):
 
 
 def newsletter_subscribe(request):
+    """
+    View to handle newsletter subscribe
+    """
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
         if form.is_valid():
@@ -66,4 +69,7 @@ def newsletter_subscribe(request):
 
 
 def privacy_policy_view(request):
+    """
+    View to render privacy policy template
+    """
     return render(request, 'privacy_policy.html')

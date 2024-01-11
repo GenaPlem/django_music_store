@@ -267,7 +267,7 @@ class NewsletterSubscriber(models.Model):
 User-agent: *
 Disallow: /accounts/
 Disallow: /bag/
-Sitemap: https://m-tune-d4849222b5e5.herokuapp.com/sitemap.xmlx
+Sitemap: https://m-tune-d4849222b5e5.herokuapp.com/sitemap.xml
 ```
 
 #### Future Marketing Strategies

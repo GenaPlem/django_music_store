@@ -9,12 +9,18 @@ from .models import WishlistItem
 
 @login_required
 def view_wishlist(request):
+    """
+    View to render wishlist template
+    """
     wishlist_items = WishlistItem.objects.filter(user=request.user)
     return render(request, 'wishlist/wishlist.html', {'wishlist_items': wishlist_items})
 
 
 @login_required
 def add_to_wishlist(request, product_id):
+    """
+    View to add product to the wishlist
+    """
     product = get_object_or_404(Product, pk=product_id)
 
     already_in_wishlist = WishlistItem.objects.filter(user=request.user, product=product).exists()
@@ -30,6 +36,9 @@ def add_to_wishlist(request, product_id):
 
 @login_required
 def remove_from_wishlist(request, product_id):
+    """
+    View to remove product from wishlist
+    """
     product = get_object_or_404(Product, pk=product_id)
     WishlistItem.objects.filter(user=request.user, product=product).delete()
     messages.success(request, f'{product.name} has been removed from your wishlist.')

@@ -9,6 +9,9 @@ from products.models import Product
 
 
 def checkout_view(request):
+    """
+    View for chechout template
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe.api_key = stripe_secret_key
@@ -71,6 +74,9 @@ def checkout_view(request):
 
 
 def checkout_success_view(request, order_number):
+    """
+    View for checkout success template
+    """
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order successfully processed! Your order number is {order_number}.')
 
