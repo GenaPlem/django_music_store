@@ -20,7 +20,7 @@ class StripeWH_Handler:
         """
         Function to send email
         """
-        from_email = settings.EMAIL_HOST_USER
+        from_email = settings.DEFAULT_FROM_EMAIL
         subject = render_to_string('checkout/email/confirmation_email_subject.txt', {'order': order})
         body = render_to_string('checkout/email/confirmation_email_body.txt', {'order': order})
         send_mail(subject, body, from_email, [order.email])
