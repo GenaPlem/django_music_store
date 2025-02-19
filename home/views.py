@@ -53,7 +53,7 @@ def newsletter_subscribe(request):
             send_mail(
                 'Subscription Confirmation',
                 message,
-                settings.EMAIL_HOST_USER,
+                settings.DEFAULT_FROM_EMAIL,
                 [form.cleaned_data['email']],
                 fail_silently=False,
             )
