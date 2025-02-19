@@ -23,8 +23,8 @@ def contact_view(request):
                     f"Name: {contact_form.name}\n"
                     f"Message: {contact_form.message}"
                 ),
-                from_email=contact_form.email,
-                recipient_list=[settings.EMAIL_HOST_USER],
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.DEFAULT_FROM_EMAIL],
             )
 
             send_mail(
@@ -36,7 +36,7 @@ def contact_view(request):
                     f"Kind regards,\n"
                     f"The M-TUNE Team"
                 ),
-                from_email=settings.EMAIL_HOST_USER,
+                from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[contact_form.email],
             )
 
